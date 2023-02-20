@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>My Library</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="res.css" />
+    <script src="javascript.js"defer></script>  
+  </head>
+  <body>
+    <div class="wrapper">
+      <div class="header">
+        <p>Library Project</p>
+        <div class="header-right">     
+          <table>
+            <caption><p>User Log</p></caption>
+            <tbody>
+              <tr>
+                <td>Total books count:</td>
+                <td class="total-books" id="totalBooks">0</td>
+              </tr>
+              <tr>
+                <td>Read books:</td>
+                <td class="read-books" id="readBooks">0</td>             
+              </tr>
+              <tr>
+                <td>Total read pages:</td>    
+                <td class="total-pages" id="totalPages">0</td> 
+              </tr>
+            </tbody> 
+          </table> 
+          <button>Log in</button>
+        </div>       
+      </div>
+
+      <div class="body">
+        <div class="add-book">
+          <button id="addBut">+ Add book</button>
+        </div>
+
+        <div class="grid-area">
+
+        </div>
+
+      <div class="footer">
+
+      </div>
+    </div>
+    <div id="modal">
+      <div class="modal-content">
+        <div class="modal-title">
+          <h1>Add a new Book</h1>
+        </div>
+        <div class="modal-form">
+          <form id="form">
+            <ul>
+              <li>
+                <label for="book-author">Author:* </label>
+                <input type="text" id="book-author" name="author">
+              </li>
+              <li>
+                <label for="book-title">Title:* </label>
+                <input type="text" id="book-title" name="title">
+              </li>
+              <li>
+                <label for="book-pages">Pages:* </label>
+                <input type="text" id="book-pages" name="pages">
+              </li>
+              <li>
+                <label for="check">Have you read it?</label>
+                <input type="checkbox" id="check" name="checking"/>
+              </li>
+              <div class="modal-buttons">
+                <button id="cancel">Cancel</button>
+                <input type="submit" value="Submit">
+              </div>
+            </ul>   
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </body>
+</html>
