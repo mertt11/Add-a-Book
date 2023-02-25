@@ -8,6 +8,11 @@ body{
     min-height: 100vh;
     font-family: 'Roboto', sans-serif;
 }
+html {
+    /* footer support */
+    position: relative;
+    min-height: 100%;
+  }
 .wrapper{
     display: grid;
     min-height: 100vh;
@@ -78,6 +83,8 @@ tr > td:nth-child(2){
     display: flex;
     justify-content: center;
     align-items: center;
+    cursor: pointer;
+    border: none;
 }
 #modal{
     display: none;
@@ -135,6 +142,7 @@ ul{
 .modal-form li{
     display: flex;
     flex-direction: column;
+    position: relative;
     margin: 2rem 2rem;
 }
 label{
@@ -148,6 +156,16 @@ input[type='text']{
     border-radius: 5px;
     border: none;
 }
+input[type='number']{
+    width: 60%;
+    padding: 0.5rem 0.4rem;
+    border-radius: 5px;
+    border: none;
+}
+input[type='text']+span::after{
+    content: "cont";
+}
+
 li:nth-child(4){
     font-size: 0.2rem;
     font-weight: 300;
@@ -171,35 +189,24 @@ li:nth-child(4)>label{
 .grid-area{
     display: grid; 
     grid-area:2/1/-1/-1;  
-    grid-template-columns: repeat(auto-fill,minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fill,minmax(14rem, 1fr));
     grid-template-rows: 1fr 1fr;
     gap:0.4rem;
+    padding:0rem 10rem; 
+    margin-bottom: 1.2rem;
+    gap:2rem 2rem;
 }
 .card{
     display: flex;
     flex-direction: column; 
+    gap:0.5rem;
     border-radius: 7px;
     background-color:white;
     border: 2px solid black; 
-    padding: 12px;
 }
 .title,.author,.pages{
     font-size: 1.2rem;
     font-weight: 400;
-}
-.title{
-    margin:0.5rem 1rem;
-     display: flex;
-    justify-content: center;
-    align-items: center; 
-}
-.author{
-    margin:0.5rem 1rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-.pages{
     margin:0.5rem 1rem;
     display: flex;
     justify-content: center;
@@ -207,11 +214,12 @@ li:nth-child(4)>label{
 }
 .readBut,.removeBut{
     margin: 0.5rem 1rem;
-    width:90%;
+    min-width: 80%;
     height: 3rem;
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    align-self: center;
 }
 .bookisRead{
     background-color: green; 
@@ -220,3 +228,23 @@ li:nth-child(4)>label{
     background-color: red; 
 }
 
+.error{
+    display: none;
+    color: red;
+}
+.error.active{
+    display: block;
+    position: absolute;
+    transform: translateX(0.4rem) translateY(4rem);
+}
+.footer{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+}
+ 
