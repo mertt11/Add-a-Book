@@ -6,11 +6,20 @@ const gridArea = document.querySelector('.grid-area');
 
 const myLibrary = [];
 
-function Book(author,title,pages, isRead) {
+/* function Book(author,title,pages, isRead) {
   this.author = author;
   this.title = title;
   this.pages = pages;
   this.isRead = isRead;
+} */
+class Book{
+  constructor(author,title,pages, isRead) {
+    this.author = author;
+    this.title = title;
+    this.pages = pages;
+    this.isRead = isRead;
+  }
+  
 }
 
 function isInLibrary(checkBook){
