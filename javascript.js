@@ -4,14 +4,6 @@ const cancel = document.getElementById("cancel");
 const form = document.getElementById("form");
 const gridArea = document.querySelector('.grid-area');
 
-const myLibrary = [];
-
-/* function Book(author,title,pages, isRead) {
-  this.author = author;
-  this.title = title;
-  this.pages = pages;
-  this.isRead = isRead;
-} */
 class Book{
   constructor(author,title,pages, isRead) {
     this.author = author;
@@ -19,18 +11,22 @@ class Book{
     this.pages = pages;
     this.isRead = isRead;
   }
-  
 }
-
-function isInLibrary(checkBook){
-  return myLibrary.some(obj => obj.title === checkBook.title);
-}
-
-function addBookToLibrary(book) {
-  if(!isInLibrary(book)){
-    myLibrary.push(book);
+class Library{
+  constructor(){
+     this.books = [];
+  }
+  addBookToLibrary(book) {
+    if(!this.isInLibrary(book)){
+      this.books.push(book);
+    }
+  }
+  isInLibrary(checkBook){
+    return this.books.some(obj => obj.title === checkBook.title);
   }
 }
+
+const library=new Library();
 
 function resetInputs() {
   form.reset();
@@ -51,16 +47,16 @@ cancel.onclick = (e) => {
 
 function updateTotalBookCount(){
   const totalBooks=document.getElementById('totalBooks'); 
-  totalBooks.textContent=myLibrary.reduce((sum)=>sum+1,0);
+  totalBooks.textContent=library.books.reduce((sum)=>sum+1,0);
 }
 function updateTotalReadBooks(){
   const readBooks=document.getElementById('readBooks');
-  const countTrue=myLibrary.filter((book)=>book.isRead===true);
+  const countTrue=library.books.filter((book)=>book.isRead===true);
   readBooks.textContent=countTrue.length;
 }
 function updateTotalReadPages(){
   const totalPages = document.getElementById("totalPages");
-  const countReadPages = myLibrary
+  const countReadPages = library.books
     .filter((book) => book.isRead)
     .reduce((sum, { pages }) => sum + parseInt(pages, 10), 0);
   totalPages.textContent = countReadPages;
@@ -68,8 +64,8 @@ function updateTotalReadPages(){
 
 
 function delCardFromArray(bookTitle){
-  const indexToRemove=myLibrary.findIndex(book => (book.title===bookTitle));
-  myLibrary.splice(indexToRemove,1);
+  const indexToRemove=library.books.findIndex(book => (book.title===bookTitle));
+  library.books.splice(indexToRemove,1);
   updateTotalReadPages(); 
   updateTotalBookCount();
   updateTotalReadBooks(); 
@@ -168,11 +164,10 @@ function checkErrors(){
      return false; 
   }
 
-  if (myLibrary.some(book => book.title === form.title.value)) {
+  if (library.books.some(book => book.title === form.title.value)) {
     showError('book-title-error','You have this book in your library');
     return false; 
   } 
-  
 
   if(form.pages.value===''){
     showError('book-pages-error','You have to enter your book pages');
@@ -187,7 +182,7 @@ form.addEventListener("submit", (e) => {
   clearError();
  
   if(checkErrors()){
-    addBookToLibrary(book);
+    library.addBookToLibrary(book);
     createCard(book);
 
     resetInputs();
